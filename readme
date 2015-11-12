@@ -1,0 +1,55 @@
+ClockworkMod for OdroidC1
+
+To build:
+Use repo to sync CyanogenMod 11.0 from GitHub then place these files in <cm11>/device/hardkernel/odroidc.
+Follow instructions found online for seeting up your toolchain and environment, then make -j4 recoveryimage.
+
+Why?
+A custom recovery is not as important for a board that boots from removable flash memory. Many things done from recovery on a phone can be done by removing the C1's boot media and mounting it on a PC. But, there are a few things such as installing gapps that are much easier with a custom recovery such as ClockworkMod.
+
+
+How?
+Warning: Back up any data you want to keep before performing this installation
+
+0) Download and unzip the new recovery image from the link below
+1) Install the stock Android image from Hardkernel as usual
+2) Boot the C1 and allow self-install to set up Android
+3) Open the Web browser and navigate to a gapps site like opengapps.org. I've tested with the Arm/4.4/nano version of gapps
+4) The gapps .zip file will be downloaded to the vfat sdcard partition
+5) The recovery image can be flashed on a linux PC or directly on the C1 if you have a PC with adb and fastboot installed. Follow either the a or the b steps below.
+On a linux PC
+6a) Shut down the C1 and remove the sd card. Put the sd card in a reader and insert into the linux PC
+7a) Don't mount the sd card file systems, or unmount if they mounted automatically
+8a) As root, use fdisk -l to find the device name of the sd card. We'll call it sdX.
+9a) Type the following command as root. Make sure you get it EXACTLY right or you'll have to re-image from scratch.
+10a) dd if=recovery.img of=/dev/sdX bs=16K seek=550 conv=fsync
+11a) When dd completes, remove the sd card from the linux computer and insert it back into the C1
+12a) Boot the C1 normally
+13a) Proceed to step 14
+Directly on the C1
+6b) Connect the C1 to the PC with adb and fastboot
+7b) Type (as root if linux): adb devices
+8b) You should see a device name that starts with HKC1
+9b) Type (as root if linux): adb reboot fastboot
+10b) When the blue LED is on and steady type (as root if linux): fastboot flash recovery recovery.img
+11b) When fastboot flash completes, type (as root if linux): fastboot reboot
+12b) The C1 should boot normally
+13b) Proceed to step 14
+14) Open the Android Terminal app on the C1
+15 Type: su
+16) Type: reboot recovery
+17) If you've been successful, you should see the ClockworkMod main menu
+18) Choose 'install zip'
+19) Choose 'choose zip from /storage/sdcard0'
+20) Choose 'Download'
+21) Select the gapps .zip file you downloaded previously
+22) If all goes well, you should see a message telling you the installation was succesful
+23) Select 'Go Back' until you see the main menu
+24) Choose 'reboot system now'
+25) The C1 should reboot to your Android Launcher
+26) If all went well, you now have the Google Play Store in your Apps drawer
+
+What else can I do with ClockworkMod?
+CWM has other interesting features including system backup/restore, sideload, cache clear, etc. These features are largely untested, so proceed with caution.
+
+

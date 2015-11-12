@@ -1,0 +1,74 @@
+diff -ruN orig/busybox-full.config new/busybox-full.config
+--- orig/busybox-full.config	2015-10-31 18:43:43.916639000 -0400
++++ new/busybox-full.config	2015-11-07 11:47:24.002960086 -0500
+@@ -539,8 +539,8 @@
+ CONFIG_DMESG=y
+ # CONFIG_FEATURE_DMESG_PRETTY is not set
+ CONFIG_FEATURE_DMESG_COLOR=y
+-# CONFIG_FBSET is not set
+-# CONFIG_FEATURE_FBSET_FANCY is not set
++CONFIG_FBSET=y
++CONFIG_FEATURE_FBSET_FANCY=y
+ # CONFIG_FEATURE_FBSET_READMODE is not set
+ # CONFIG_FDFLUSH is not set
+ # CONFIG_FDFORMAT is not set
+diff -ruN orig/busybox-full.links new/busybox-full.links
+--- orig/busybox-full.links	2015-10-31 18:43:43.916639000 -0400
++++ new/busybox-full.links	2015-11-07 11:17:40.858983799 -0500
+@@ -52,6 +52,7 @@
+ /bin/expr
+ /bin/false
+ /sbin/fbsplash
++/sbin/fbset
+ /sbin/fdisk
+ /bin/fgconsole
+ /bin/fgrep
+diff -ruN orig/busybox-full.sources new/busybox-full.sources
+--- orig/busybox-full.sources	2015-10-31 18:43:43.916639000 -0400
++++ new/busybox-full.sources	2015-11-07 11:11:38.637456579 -0500
+@@ -73,7 +73,7 @@
+ selinux/getenforce.c selinux/sestatus.c selinux/setsebool.c
+ selinux/getsebool.c selinux/runcon.c selinux/setenforce.c selinux/setfiles.c selinux/matchpathcon.c
+ 
+-util-linux/blkid.c util-linux/blockdev.c util-linux/dmesg.c util-linux/fdisk.c util-linux/findfs.c util-linux/flock.c
++util-linux/blkid.c util-linux/blockdev.c util-linux/dmesg.c util-linux/fbset.c util-linux/fdisk.c util-linux/findfs.c util-linux/flock.c
+ util-linux/freeramdisk.c util-linux/fstrim.c util-linux/getopt.c
+ util-linux/hexdump.c util-linux/hwclock.c util-linux/losetup.c util-linux/lspci.c util-linux/lsusb.c
+ util-linux/mkfs_ext2.c util-linux/mkfs_vfat.c util-linux/mkswap.c
+diff -ruN orig/busybox-minimal.config new/busybox-minimal.config
+--- orig/busybox-minimal.config	2015-10-31 18:43:43.916639000 -0400
++++ new/busybox-minimal.config	2015-11-07 11:46:35.662741845 -0500
+@@ -539,8 +539,8 @@
+ CONFIG_DMESG=y
+ # CONFIG_FEATURE_DMESG_PRETTY is not set
+ CONFIG_FEATURE_DMESG_COLOR=y
+-# CONFIG_FBSET is not set
+-# CONFIG_FEATURE_FBSET_FANCY is not set
++CONFIG_FBSET=y
++CONFIG_FEATURE_FBSET_FANCY=y
+ # CONFIG_FEATURE_FBSET_READMODE is not set
+ # CONFIG_FDFLUSH is not set
+ # CONFIG_FDFORMAT is not set
+diff -ruN orig/busybox-minimal.links new/busybox-minimal.links
+--- orig/busybox-minimal.links	2015-10-31 18:43:43.916639000 -0400
++++ new/busybox-minimal.links	2015-11-07 11:16:03.574572715 -0500
+@@ -42,6 +42,7 @@
+ /bin/expand
+ /bin/expr
+ /bin/false
++/sbin/fbset
+ /sbin/fdisk
+ /bin/fgrep
+ /bin/find
+diff -ruN orig/busybox-minimal.sources new/busybox-minimal.sources
+--- orig/busybox-minimal.sources	2015-10-31 18:43:43.916639000 -0400
++++ new/busybox-minimal.sources	2015-11-07 11:09:29.744915438 -0500
+@@ -48,7 +48,7 @@
+ selinux/getenforce.c selinux/sestatus.c selinux/setsebool.c
+ selinux/getsebool.c selinux/setenforce.c selinux/setfiles.c selinux/matchpathcon.c
+ 
+-util-linux/blkid.c util-linux/blockdev.c util-linux/dmesg.c util-linux/fdisk.c util-linux/freeramdisk.c util-linux/fstrim.c util-linux/getopt.c
++util-linux/blkid.c util-linux/blockdev.c util-linux/dmesg.c util-linux/fbset.c util-linux/fdisk.c util-linux/freeramdisk.c util-linux/fstrim.c util-linux/getopt.c
+ util-linux/hexdump.c util-linux/losetup.c util-linux/lspci.c util-linux/lsusb.c util-linux/mkfs_ext2.c util-linux/mkfs_vfat.c util-linux/mkswap.c
+ util-linux/more.c util-linux/mount.c util-linux/rdev.c util-linux/rev.c util-linux/swaponoff.c util-linux/switch_root.c util-linux/umount.c
+ 
