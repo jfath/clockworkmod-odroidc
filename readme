@@ -2,7 +2,7 @@ ClockworkMod for OdroidC1
 
 To build:
 Use repo to sync CyanogenMod 11.0 from GitHub then place these files in <cm11>/device/hardkernel/odroidc.
-Follow instructions found online for seeting up your toolchain and environment, then make -j4 recoveryimage.
+Follow instructions found online for setting up your toolchain and environment, then make -j4 recoveryimage.
 
 Why?
 A custom recovery is not as important for a board that boots from removable flash memory. Many things done from recovery on a phone can be done by removing the C1's boot media and mounting it on a PC. But, there are a few things such as installing gapps that are much easier with a custom recovery such as ClockworkMod.
